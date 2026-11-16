@@ -1,0 +1,93 @@
+erDiagram
+  CUSTOMER ||--o{ ADDRESS : has
+  CUSTOMER ||--o{ ORDERS : places
+  ADDRESS ||--o{ ORDERS : receives
+  RESTAURANT ||--o{ MENU_ITEM : offers
+  RESTAURANT ||--o{ ORDERS : receives
+  ORDERS ||--|{ ORDER_ITEM : contains
+  MENU_ITEM ||--o{ ORDER_ITEM : appears_in
+  ORDERS ||--o| DELIVERY : has
+  COURIER ||--o{ DELIVERY : handles
+  ORDERS ||--o| PAYMENT : paid_by
+  DELIVERY ||--o{ DELIVERY_ALLOCATION : evaluates
+  COURIER ||--o{ DELIVERY_ALLOCATION : considered
+
+  CUSTOMER {
+    int customer_id PK
+    varchar name
+    varchar phone UK
+    varchar email UK
+    varchar password_hash
+  }
+  ADDRESS {
+    int address_id PK
+    int customer_id FK
+    varchar address_line
+    varchar area
+    decimal latitude
+    decimal longitude
+  }
+  RESTAURANT {
+    int restaurant_id PK
+    varchar name
+    varchar phone UK
+    varchar area
+    decimal latitude
+    decimal longitude
+    enum status
+    decimal rating
+  }
+  MENU_ITEM {
+    int item_id PK
+    int restaurant_id FK
+    varchar name
+    decimal price
+    boolean availability
+  }
+  ORDERS {
+    int order_id PK
+    int customer_id FK
+    int restaurant_id FK
+    int address_id FK
+    datetime order_time
+    enum status
+    decimal total_amount
+  }
+  ORDER_ITEM {
+    int order_id PK, FK
+    int item_id PK, FK
+    int quantity
+    decimal unit_price
+  }
+  COURIER {
+    int courier_id PK
+    varchar name
+    varchar phone UK
+    enum vehicle_type
+    enum status
+  }
+  DELIVERY {
+    int delivery_id PK
+    int order_id FK, UK
+    int courier_id FK
+    datetime assigned_at
+    datetime picked_at
+    datetime delivered_at
+    enum status
+  }
+  PAYMENT {
+    int payment_id PK
+    int order_id FK, UK
+    decimal amount
+    enum method
+    enum status
+  }
+  DELIVERY_ALLOCATION {
+    int allocation_id PK
+    int delivery_id FK
+    int courier_id FK
+    decimal distance_km
+    int estimated_time
+    decimal allocation_score
+    enum result
+  }

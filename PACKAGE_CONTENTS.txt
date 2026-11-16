@@ -1,0 +1,19 @@
+PACKAGE CONTENTS
+================
+Included source files:
+- database/hyperlocal_food_delivery.sql: original SQL dump uploaded for this project.
+- docs/Existing_DBMS_Miniproject_Submission.pdf: original 10-page project submission.
+- docs/DBMS_Level3_Project_Requirements.pdf: course Level 3 requirements.
+
+Added Level 3 implementation:
+- Next.js App Router dashboard and API routes.
+- MySQL transaction-based order creation and courier allocation logic.
+- MySQL procedure, trigger, audit table, indexes and full-text search.
+- MongoDB seed script, collections, indexes and aggregation endpoint.
+- Project report, architecture, data dictionary, ER diagram source and test cases.
+
+Important:
+The app is a starter implementation and must be configured and run locally.
+The courier allocation uses a deterministic demo distance estimate because the provided
+relational schema does not include live courier GPS coordinates.
+Update team contributions and add genuine run screenshots before submission.
